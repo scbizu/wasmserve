@@ -17,6 +17,7 @@ package main
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -177,5 +178,9 @@ func main() {
 	flag.Parse()
 	log.Printf("current workdir path: %s", *flagWorkdirPath)
 	http.HandleFunc("/", handle)
-	log.Fatal(http.ListenAndServe(*flagHTTP, nil))
+	port := fmt.Sprintf(":%s", os.Getenv("PORT"))
+	if os.Getenv("PORT") == "" {
+		port = *flagHTTP
+	}
+	log.Fatal(http.ListenAndServe(port, nil))
 }
