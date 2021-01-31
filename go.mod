@@ -1,3 +1,3 @@
-module github.com/hajimehoshi/wasmserve
+module github.com/scbizu/wasmserve
 
 go 1.12
